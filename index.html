@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Megrim" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet" type="text/css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/scripts.js"></script>
+  <title>Bug in the code</title>
+</head>
+<body class="container">
+  <header>
+    <img src="img/logo_sm.png" alt="logo" class="logo">
+  </header>
+  <div class="background-color">
+    <div class="bug3.png"></div>
+    <form id="names">
+      <input type="text" name="name1" placeholder="Player 1 name" id="name1">
+      <input type="text" name="name2" placeholder="Player 2 name" id="name2">
+      <input type="text" name="name3" placeholder="Player 3 name" id="name3">
+      <input type="text" name="name4" placeholder="Player 4 name" id="name4"><br>
+      <button type="submit" name="names" id="start-game" class="btn btn-dark">Start the Game</button>
+    </form>
+
+    <div class="night hide" id="night-intro">
+      <h4>夜が訪れ長いコーディングを終えたプログラマーたちはオフィスを後にしました。。。<span class="player-name .alt-text">これから役割を発表するので</span> これから画面に出る名前のプレイヤーにデバイスを渡し、プレイヤーは自分の役割を確認してください。</h4>
+      <button type="button" name="begin-night" id="begin-night" class="next-role btn btn-dark">Begin</button>
+    </div>
+
+    <div class="night" id="night-begin-roles">
+      <div id="night-player-intros" class="hide">
+        <span class="img" id="night-player-img"></span>
+        <h5>このプレイヤーにデバイスを渡しください。準備ができたら、上のアバターをクリックしてください。</h5>
+        <button type="button" name="continue" id="continue-night" class="hide continue-role btn btn-dark">Start Turn</button>
+      </div>
+
+      <div id="developer" class="hide role">
+        <h3>//プログラマー//</h3>
+        <img src="img/dev3.png" alt="dev" class="player-img">
+        <br><br>
+        <h5>後で、同僚たちとハッキングした犯人を推理します！正体を暴きましょう！</h5>
+        <button type="button" name="continue" class="next-role btn btn-dark" id="developer-end-turn">Okay</button>
+      </div>
+
+      <div id="bug" class="hide role">
+        <h3>//hacker//</h3>
+        <img src="img/bug3.png" alt="bug" class="player-img">
+        <br>
+        <h5>おっと、あなたがhackerです！</h5>
+        <h5>標的となるプレイヤーのPCを選択してください！</h5>
+        <div class="bug-candidates">
+        </div>
+        <button type="button" name="continue" class="next-role btn btn-dark hide" id="bug-end-turn">Infect Code</button>
+      </div>
+
+      <div class="day hide" id="night-end-roles">
+        <h4>朝が来ました！プログラマーはコーディングに取り掛かります</h4>
+        <button type="button" name="begin-day" id="begin-day" class="btn btn-dark">Ready</button>
+      </div>
+    </div>
+
+    <div class="day hide" id="day-intro">
+      <div id="bug-victim">
+        <span id="bug-victim-img"></span>
+        <h4><span id="victim">NAME</span> はバグだらけのコードのため、会社を首になりました、、</h4>
+        <h4>あなたは会社の一員ではないためこのゲームが終わるまで喋れません！</h4>
+        <button type="button" name="bug-victim-accept" id="bug-victim-accept" class="btn btn-dark">Done</button>
+      </div>
+
+      <div id="begin-discussion" class="hide">
+        <h4>昨日クビになったプレイヤーのせいでバグが起きたのではなく、ハッキングされていたことがわかりました。このオフィス内からでしかハッキングされないはずなので犯人はこの中です各プレイヤーは話し合いhackerだと思う人に投票してください</h4>
+        <div id="time" class="hide">
+          <button id="discussion" type="button" class="btn btn-dark">Start Discussion</button>
+          <div id='timeClock'>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day hide" id="day-begin-roles">
+      <div class="day" id="day-voting">
+        <h4>投票が始まります！</h4>
+        <button type="button" name="begin-vote" id="begin-vote"  class="btn btn-dark">Continue</button>
+      </div>
+
+      <div class="player-vote hide">
+        <h4>hackerは誰ですか？？</h4>
+        <span class="img" id="day-player-img"></span>
+        <div class="candidates">
+        </div>
+      </div>
+    </div>
+
+    <div class="day hide" id="vote-result">
+      <div class="hide" id="vote-victim">
+        <span id="vote-victim-img"></span>
+        <h4>投票の結果, <span id="vote-victim-name">NAME</span> がハッキングをしたと疑われたため、クビになりました。残りのプログラマーは仕事に戻ります</h4>
+        <h4></h4>
+      </div>
+
+      <div class="day hide" id='vote-draw'>
+        <h4>意見が二つに分かれてしまいました！よってハッカーを放置したまま仕事を続けます、、</h4>
+      </div>
+      <button type="button" name="day-end" id="day-end"  class="btn btn-dark">Done</button>
+    </div>
+
+    <div class="night hide" id="day-end-roles">
+      <h4>定時なのでプログラマーはオフィスを後にします</h4>
+      <button type="button" name="begin-night" id="day-end-begin-night"  class="btn btn-dark">Ready</button>
+    </div>
+
+    <div class="night hide" id="end-game">
+      <div  class="hide" id="bug-win">
+        <img src="img/bug_win.png" alt="bug won" class="player-img-bug">
+        <h4>hackerが勝利しました！</h4>
+        <h5>会社が倒産してしまいました！</h5>
+      </div>
+      <div class="hide" id="dev-win">
+        <img src="img/dev_win.png" alt="bug won" class="player-img">
+        <h4>おめでとうございます！彼/彼女がハッカーでした！</h4>
+        <h5>しかし別の会社を探す方がいいかもしれませんね。この会社は離職率が高いようですから...</h5>
+      </div>
+      <!-- js populates either "Bugs have corrupted all the code" or "Devs have found bug" -->
+    </div>
+  </div>
+</body>
+</html>
